@@ -8,7 +8,7 @@ ttreego is a simple trie tree implement using golang.
 
 ## Documentation
 
-Read [Godoc](https://gocode.org/github.com/sryanyuan/ttreego)
+Read [Godoc](https://godoc.org/github.com/sryanyuan/ttreego)
 
 ## Example
 
