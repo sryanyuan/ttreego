@@ -112,7 +112,7 @@ func (t *ttreeImpl) MatchWhat(strData []byte) string {
 		i--
 		node = node.parent
 	}
-	if i != 0 {
+	if i != -1 {
 		// Not find the root
 		return ""
 	}
