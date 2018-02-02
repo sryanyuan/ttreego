@@ -98,6 +98,29 @@ func (t *ttreeImpl) GetCount() int {
 	return t.addCnt
 }
 
+// MatchWhat return the matched prefix
+func (t *ttreeImpl) MatchWhat(strData []byte) string {
+	termNode := t.findTermNode(strData, false)
+	if nil == termNode {
+		return ""
+	}
+	prefixData := make([]byte, termNode.level)
+	node := termNode
+	i := termNode.level - 1
+	for nil != node && i >= 0 {
+		prefixData[i] = node.value
+		i--
+		node = node.parent
+	}
+
+	return string(prefixData)
+}
+
+// MatchWhatString return the matched prefix
+func (t *ttreeImpl) MatchWhatString(str string) string {
+	return t.MatchWhat([]byte(str))
+}
+
 // AddString add a string to the tree
 func (t *ttreeImpl) AddString(str string) bool {
 	return t.Add([]byte(str))

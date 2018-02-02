@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	randomStrings [80960][]byte
+	randomStrings [40960][]byte
 )
 
 func init() {

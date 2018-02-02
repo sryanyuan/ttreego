@@ -7,10 +7,13 @@ type TTree interface {
 	// Remove a string from trie tree
 	Remove([]byte) error
 	RemoveString(string) error
-	// Check if a string has prefix
+	// Match check if a string has prefix
 	Match([]byte) bool
 	MatchString(string) bool
-	// Get the add count
+	// MatchWhat return the matched prefix
+	MatchWhat([]byte) string
+	MatchWhatString(string) string
+	// GetCount return the add count
 	GetCount() int
 	// Reset the trie tree
 	Reset()

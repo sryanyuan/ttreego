@@ -16,6 +16,10 @@ func TestTTreeMatch0(t *testing.T) {
 	if !tree.MatchString("Hello world hello") {
 		t.Errorf("Error")
 	}
+	matchWhat := tree.MatchWhatString("Hello world hello")
+	if matchWhat != "Hello world" {
+		t.Errorf("Error")
+	}
 	if tree.MatchString("Hello worl") {
 		t.Errorf("Error")
 	}
@@ -24,6 +28,10 @@ func TestTTreeMatch0(t *testing.T) {
 		t.Errorf("Error")
 	}
 	if !tree.MatchString("Hello my honey honey") {
+		t.Errorf("Error")
+	}
+	matchWhat = tree.MatchWhatString("Hello my honey honey")
+	if matchWhat != "Hello my honey" {
 		t.Errorf("Error")
 	}
 	if tree.MatchString("Hello my hoNey") {
