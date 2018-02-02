@@ -5,7 +5,7 @@ import (
 )
 
 func TestTTreeMatch0(t *testing.T) {
-	tree := NewTTree()
+	tree := &ttreeImpl{}
 	tree.AddString("Hello world")
 	tree.AddString("Hello my honey")
 	tree.AddString("Go golang")
@@ -75,5 +75,27 @@ func TestTTreeMatch0(t *testing.T) {
 
 	if nil != tree.nodes {
 		t.Errorf("node not nil")
+	}
+}
+
+func TestTTreeRemove(t *testing.T) {
+	tree := NewTTree()
+	for i := 0; i < 102400; i++ {
+		tree.Add(randomStrings[i%len(randomStrings)])
+	}
+
+	for i := 0; i < 10240; i++ {
+		if err := tree.Remove(randomStrings[i%len(randomStrings)]); nil != err {
+			if err != ErrTTreeNodeNotFound {
+				t.Errorf("Remove %v failed, err = %v", i, err)
+			}
+		}
+	}
+	// Test one not in the tree
+	if tree.MatchString("..!!@@##$$%%^^&&**(())__") {
+		t.Errorf("Match a not match string")
+	}
+	if tree.GetCount() != 0 {
+		t.Errorf("Removed all, but still have %v in tree", tree.GetCount())
 	}
 }
